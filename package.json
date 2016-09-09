@@ -1,0 +1,33 @@
+{
+  "name": "kai-you-bootstrap",
+  "version": "0.0.1",
+  "description": "KAI-YOUサイト作成テンプレート",
+  "main": "index.js",
+  "config": {},
+  "scripts": {
+    "build:img": "cpx \"./src/img/*.{png,gif,jpg}\" ./docs/img",
+    "build:sprite": "spritesmith --rc ./bin/.spritesmith.js",
+    "build:css": "node-sass --output-style nested ./src/css --output ./docs/css",
+    "postbuild:css": "postcss --use autoprefixer --autoprefixer.browsers 'last 2 versions' ./docs/css/style.css -d ./docs/css/",
+    "build:js": "cpx ./src/js/*.js ./docs/js",
+    "build": "npm run build:css & npm run build:js & npm run build:img & npm run build:sprite",
+    "watch:img": "watch 'npm run build:img' ./src/img",
+    "watch:sprite": "watch 'npm run build:sprite' ./src/css/sprite",
+    "watch:css": "watch 'npm run build:css' ./src/css",
+    "watch:js": "watch 'npm run build:js' ./src/js",
+    "watch": "npm run watch:css & npm run watch:js & npm run watch:img & npm run watch:sprite",
+    "start": "npm run watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^6.4.1",
+    "cpx": "^1.5.0",
+    "imagemin-cli": "^3.0.0",
+    "node-sass": "^3.9.3",
+    "postcss-cli": "^2.6.0",
+    "rimraf": "^2.5.4",
+    "spritesmith-cli": "^1.1.2",
+    "watch": "^0.19.2"
+  }
+}
